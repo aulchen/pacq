@@ -80,6 +80,60 @@ Let $M$ be the ppo onto $C(X)$. Show that $(I-M)$ is the ppo onto $C(X)^\perp$.
 
 $I-M$ is symmetric and $(I-M)(I-M) = I-2M+M = I-M$ idempotent and thus is a ppo. It projects onto $C(X)^\perp$ because for $x \in C(X)$, $(I-M)x = x-x=0$ and for $x \in C(X)^\perp$, $(I-M)x = x$. For the trace, $\tr(I-M+M) = n$ implies that $\tr(I-M)+\tr(M)=n$. Since $\tr(M)=r(X)$, we have that $\tr(I-M)=n-r(X)$.
 
+\section*{Exercise 1.6}
+
+For a linear model $Y=X\beta+e$, $\E(e)=0$, $\cov(E)=\sigma^2I$, the residuals are
+
+\[
+\hat{e} = Y-X\hat{\beta} = (I-M)Y
+\]
+
+where $M$ is the perpendicular projection operator onto $C(X)$. Find the following.
+
+\subsection*{Part a}
+
+\[
+\E(\hat{e}) = (I-M)\E(Y) = (I-M)X\beta = 0
+\]
+
+because $X\beta \in C(X)$.
+
+\subsection*{Part b}
+
+\[
+\cov(\hat{e}) = (I-M)\cov(Y)(I-M)' = \sigma^2(I-M)
+\]
+
+because $I-M$ being a ppo implies $(I-M)(I-M)' = (I-M)$.
+
+\subsection*{Part c}
+
+\[
+\cov(\hat{e},MY) = \cov(\hat{e},Y)M' = \cov((I-M)Y,Y)M = \sigma^2(I-M)M = 0
+\]
+
+\subsection*{Part d}
+
+\[
+\E(\hat{e}'\hat{e}) = \E[Y'(I-M)Y] = \E(e'(I-M)e)
+\]
+
+where the second equality uses $(I-M)Y = (I-M)X\beta+e = (I-M)e$ and the symmetry of $I-M$. By the distribution of quadratic forms,
+
+\[
+\E(e'(I-M)e) = \tr((I-M)(\sigma^2I)) = \sigma^2(n-r)
+\]
+
+\subsection*{Part e}
+
+To show that $\hat{e}'\hat{e} = Y'Y-Y'MY$, this immediately follows from $\hat{e}'\hat{e}=Y'(I-M)Y$ and distributing.
+
+\subsection*{Part f}
+
+Using that $MY=X\hat{\beta}$, rewrite c. and e.
+
+Making the substitution, we get that $\cov(\hat{\beta}, \hat{e}) = 0$ and $\hat{e}'\hat{e} = Y'Y - \hat{beta}'Y$.
+
 \section*{Exercise 1.11}
 
 Prove that if $Y \sim N(\mu, V)$ and $VAVBV=0$, $VAVB\mu=0$, $VBVA\mu=0$, and the conditions from Theorem 1.3.6 hold for $Y'AY$ and $Y'BY$, then $Y'AY$ and $Y'BY$ are independent.
