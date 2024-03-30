@@ -132,7 +132,50 @@ To show that $\hat{e}'\hat{e} = Y'Y-Y'MY$, this immediately follows from $\hat{e
 
 Using that $MY=X\hat{\beta}$, rewrite c. and e.
 
-Making the substitution, we get that $\cov(\hat{\beta}, \hat{e}) = 0$ and $\hat{e}'\hat{e} = Y'Y - \hat{beta}'Y$.
+Making the substitution, we get that $\cov(\hat{\beta}, \hat{e}) = 0$ and $\hat{e}'\hat{e} = Y'Y - \hat{\beta}'Y$.
+
+\section*{Exercise 1.7}
+
+Given that $Y \sim N(\mu, V)$ and $V$ is nonsingular, show that the density of $Y$ is
+
+\[
+f(y) = (2\pi)^{-n/2}[\det(V)]^{-1/2}\exp(-(y-\mu)'V^{-1}(y-\mu)/2)
+\]
+
+We can write $V$ as $V = AA'$, where $A$ is nonsingular. By the definition of normals, we can rewrite $Y$ as $Y = G(Z)= \mu + AZ$, where $Z$, where $Z$ is a standard normal. Thus $G^{-1}(Y) = A^{-1}(Y-\mu)$,  $dG^{-1}(Y) = A^{-1}$, and
+
+\[
+\det(dG^{-1}(Y)) = \det(A^{-1}) = \det(A)^{-1} = \det(V)^{-1/2}
+\]
+
+since $AA' = V$ implies $\det(A) = \det(V)^{1/2}$. For the density of $Z$,
+
+\begin{align*}
+f_Z(z) &= f_Z(G^{-1}(y)) \\
+&= (2\pi)^{-n/2}\exp(
+-(Y-\mu)'A'^{-1}A^{-1}(Y-\mu)/2
+) \\
+&= (2\pi)^{-n/2}\exp(
+-(Y-\mu)'V^{-1}(Y-\mu)/2
+)
+\end{align*}
+
+since $AA'=V$ implies $A'^{-1}A^{-1}=V^{-1}$. Thus the final density of $Y$ is
+
+\begin{align*}
+f_Y(y) &= f_Z(G^{-1}(y))|\det(dG^{-1}(Y))| \\
+&= (2\pi)^{-n/2}\det(V)^{-1/2}\exp(
+-(Y-\mu)'V^{-1}(Y-\mu)/2
+)
+\end{align*}
+
+as desired.
+
+\section*{Exercise 1.8}
+
+Show that if $Y\sim N(\mu, V)$ and $B$ is a fixed $n \times r$ matrix, then $BY \sim N(B\mu, BVB')$.
+
+Let $Z$ be an r-dimensional standard normal. Define $Y = AZ + \mu$ where $AA' = V$. Then $BY = BAZ + B\mu$ is a normally distributed random variable with distribution $N(B\mu, BAA'B') = N(B\mu, BVB')$.
 
 \section*{Exercise 1.11}
 
