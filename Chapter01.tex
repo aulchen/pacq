@@ -422,4 +422,118 @@ $y_1, y_2|y_3$ is normal with mean and covariance
 \end{pmatrix}
 \end{gather*}
 
+\subsection*{Part f}
+
+$\rho_{12}, \rho_{23}$, and $\rho_{13}$.
+
+Reading off the numbers from the covariance matrix,
+
+\begin{gather*}
+\rho_{12} = 0 \\
+\rho_{13} = \frac{1}{\sqrt{2}\sqrt{4}} = \frac{\sqrt{2}}{4} \\
+\rho_{23} = \frac{2}{\sqrt{3}\sqrt{4}} = \frac{\sqrt{3}}{3}
+\end{gather*}
+
+\subsection*{Part g}
+
+The distribution of
+
+\[
+Z = \begin{pmatrix}2 & 1 & 0 \\
+1 & 1 & 1 \end{pmatrix}
+Y+
+\begin{pmatrix}
+-15 \\ -18
+\end{pmatrix}
+\]
+
+Multiplying out the matrices and using the formulas, we have that
+
+\begin{gather*}
+\mu_Z = \begin{pmatrix}1 \\ 0\end{pmatrix} \\
+\Sigma_z = \begin{pmatrix} 11 & 11 \\ 11 & 15 \end{pmatrix}
+\end{gather*}
+
+\section*{Exercise 1.5.3}
+
+The density of $Y = (y_1, y_2, y_3)'$ is
+
+\[
+(2\pi)^{-3/2}|V|^{-1/2}e^{-Q/2}
+\]
+
+where
+
+\[
+Q=2y_1^2 + y_2^2 + 2y_1y_1 - 8y_1 - 4y_2 + 8
+\]
+
+Find $V^{-1}$ and $\mu$.
+
+We know that this is a normal in $\R^3$. We can see immediately from the fact that there is only one $y_3$ term, $y_3^2$, that $\mu_3 = 0. \sigma^2_3 = 1$ and $y_3$ is uncorrelated, and thus independent, of $y_1$ and $y_2$.
+
+From the $y_1^2$ and $y_2^2$ terms we see that $\sigma_1^2=2, \sigma_2^2=1$. The unknown quantities are $\mu_1, \mu_2, \sigma_{12}^2$. Putting these into the matrix multiplication, we have that the $y_1$ and $y_2$ parts of $Q$ have the form
+
+\begin{gather*}
+(y_1-a, y_2-b)\begin{pmatrix}2 & c \\ c & 1\end{pmatrix}
+(y_1-a, y_2-b)' \\
+=2(y_1-a)^2 + 2c(y_1-a)(y_2-b) + (y_2-b)^2
+\end{gather*}
+
+and we see with comparison with the $2y_1y_2$ term in $Q$ that $c=1$. Expanding out this term, we get
+
+\[
+2y_1^2 -2(2a+b)y_1 + 2y_1y_2 + y_2^2 - 2(a+b) + 2a^2 + 2ab + b^2
+\]
+
+and comparing the terms with the $y_1$ and $y_2$ terms in $Q$ gives that $a=2, b=0$. Thus
+
+\begin{gather*}
+\mu = (2, 0, 0)' \\
+V^{-1} = \begin{pmatrix}
+2 & 1 & 0\\
+1 & 1 & 0\\
+0 & 0 & 1
+\end{pmatrix}
+\end{gather*}
+
+\section*{Exercise 1.5.4}
+
+Let $Y \sim N(J\mu, \sigma^2I)$ and let $O = [n^{-1/2}J, O_1]$ be an orthonormal matrix.
+
+\subsection*{Part a}
+
+Find the distribution of $O'Y$.
+
+\begin{gather*}
+\mu_{O'Y} = \begin{pmatrix} n^{-1/2}J' \\ O_1'\end{pmatrix} \mu J = \begin{pmatrix} n^{1/2} \mu \\ 0 \end{pmatrix} \\
+\Sigma_{O'Y} = O'\sigma^2IO = \sigma^2I
+\end{gather*}
+
+\subsection*{Part b}
+
+Show that $\bar{y} = (1/n)J'Y$ and $s^2 = Y'O_1O_1'Y/(n-1)$.
+
+$\bar{y}$ is immediate, because by definition $J'Y = \sum_{i=1}^n y_i$. For $s^2$, following the hint, we have
+
+\begin{align*}
+Y'Y &= Y'OO'Y =
+Y'\begin{pmatrix} n^{-1/2}J' \\ O_1'\end{pmatrix}
+\begin{pmatrix} n^{-1/2}J & O_1\end{pmatrix}Y \\
+&=Y'(1/n)JJ'Y + Y'O_1O_1'Y
+\end{align*}
+
+For the first term on the right, $Y'(1/n)JJ'Y = n\bar{y}^2$. Subtracting from both sides and expanding out $Y'Y$,
+
+\[
+Y'Y - Y'(1/n)JJ'Y = \sum_{i=1}^n y_i^2 - \bar{y}^2 = \sum_{i=1}^n(y_i-\bar{y})^2
+\]
+using the usual trick that the cross-terms sum to zero. Thus
+\[
+\left(Y'Y-Y'(1/n)JJ'Y\right)/(n-1) = s^2 = Y'O_1O_1'Y/(n-1)
+\]
+as desired.
+\subsection*{Part c}
+Show that $\bar{y}$ and $s^2$ are independent.
+By Corollary 1.2.4, $J'Y$ and $O_1'Y$ are independent because $J'O_1=0$ by orthogonality. $\bar{y}$ and $s^2$ are functions of $J'Y$ and $O_1'Y$, respectively.
 \end{document}
