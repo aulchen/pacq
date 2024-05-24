@@ -23,10 +23,10 @@
 \newcommand{\indep}{\perp \!\!\! \perp}
 
 \newcommand{\prob}{\boldsymbol{P}}
-\newcommand{\E}{\boldsymbol{E}}
-\newcommand{\var}{\boldsymbol{Var}}
-\newcommand{\cov}{\boldsymbol{Cov}}
-\newcommand{\tr}{\boldsymbol{tr}}
+\newcommand{\E}{\text{E}}
+\newcommand{\var}{\text{Var}}
+\newcommand{\cov}{\text{Cov}}
+\newcommand{\tr}{\text{tr}}
 \newcommand{\sd}{\text{SD}}
 \newcommand{\se}{\text{SE}}
 \newcommand{\dom}{\text{dom}}
@@ -536,4 +536,51 @@ as desired.
 \subsection*{Part c}
 Show that $\bar{y}$ and $s^2$ are independent.
 By Corollary 1.2.4, $J'Y$ and $O_1'Y$ are independent because $J'O_1=0$ by orthogonality. $\bar{y}$ and $s^2$ are functions of $J'Y$ and $O_1'Y$, respectively.
+
+\section*{Exercise 1.5.6}
+Let $Y = (y_1, y_2, y_3)'$ have a $N(\mu, \sigma^2I)$ distribution. Consider the quadratic forms given by the matrices below.
+\[
+M_1 = \frac{1}{3}J_3^3, M_2 = \frac{1}{14}
+\begin{pmatrix}
+9 & -3 & -6 \\
+-3 & 1 & 2 \\
+-6 & 2 & 4
+\end{pmatrix},
+M_3 = \frac{1}{42}
+\begin{pmatrix}
+1 & -5 & 4 \\
+-5 & 25 & -20 \\
+4 & -20 & 16
+\end{pmatrix}
+\]
+\subsection*{Part a}
+Find the distribution of each $Y'M_iY$.
+We first note that all of the $M_i$ are symmetric idempotent matrices, so they are perpendicular projection matrices (ppo). They are all rank one. Since they are ppos, we can rewrite them as $M_i = O_iO_i'$. Quick reflection will show that
+\[
+O_1 = \frac{1}{\sqrt{3}}\begin{pmatrix} 1\\ 1\\ 1\end{pmatrix},
+O_2 = \frac{1}{\sqrt{14}}\begin{pmatrix} 3\\ -1\\ -2\end{pmatrix},
+O_3 = \frac{1}{\sqrt{42}}\begin{pmatrix} 1\\ -5\\ 4\end{pmatrix}
+\]
+
+By Theorem 1.3.3, we have that
+\[
+Y'M_iY \sim X^2(1, \frac{\mu'M_i\mu}{2})
+\]
+where
+\[
+\mu'M_i\mu = \mu' O_iO_i' \mu = (\mu'O_i)^2
+\]
+
+\subsection*{Part b}
+Show that the quadratic forms are pairwise independent.
+
+We show that $M_iY$ is independent of $M_jY$ for $i \neq j$, which implies the pairwise independence of the quadratic forms. $M_iY$ and $M_jY$ are Gaussians, so showing their covariance is zero implies independence. We have that
+\[
+\cov(M_iY, M_jY) = M_i\cov(Y, Y)M_j = \sigma^2O_iO_i'O_jO_j'
+\]
+A quick check will show that $O_1, O_2, O_3$ are orthonormal, so $O_i'O_j = 0$ for $i\neq j$. Thus $M_iY$ and $M_jY$ are pairwise independent for $i \neq j$.
+\subsection*{Part c}
+Show that the quadratic forms are mutually independent.
+
+This immediately follows from Part b because for Gaussians $1 ... k$, pairwise independence between all pairs implies mutual independence. The quadratic forms are functions of the Gaussians, so they too are mutually independent.
 \end{document}
