@@ -1,0 +1,126 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{optidef}
+
+\newenvironment{proof}{\paragraph{Proof:}}{\hfill$\square$}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\usepackage{graphicx}
+\graphicspath{ {images} }
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+
+\newcommand{\F}{\mathcal{F}}
+
+	
+\newcommand{\indep}{\perp \!\!\! \perp}
+
+\newcommand{\prob}{\boldsymbol{P}}
+\newcommand{\E}{\text{E}}
+\newcommand{\var}{\text{Var}}
+\newcommand{\cov}{\text{Cov}}
+\newcommand{\tr}{\text{tr}}
+\newcommand{\sd}{\text{SD}}
+\newcommand{\se}{\text{SE}}
+\newcommand{\dom}{\text{dom}}
+\newcommand{\quartile}{\text{quartile}}
+
+\newcommand{\trace}{\text{trace}}
+
+\newcommand{\bin}{\text{Bin}}
+\newcommand{\pois}{\text{Pois}}
+\newcommand{\geom}{\text{Geom}}
+
+\author{Arthur Chen}
+\title{PACQ Chapter 2 Solutions}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section*{Exercise 2.1}
+
+Show that for $\lambda'\beta$ estimable,
+
+\begin{equation}
+\label{Exercise2.1Starter}
+\frac{\lambda'\hat{\beta} - \lambda'\beta}{
+\sqrt{MSE\lambda'(X'X)^-\lambda}
+} \sim t(dfE)
+\end{equation}
+
+Find the form of an $\alpha$ level test of $H_0: \lambda'\beta = 0$ and the form for a $(1-\alpha)100\%$ confidence interval for $\lambda'\beta$.
+
+I will make the usual assumptions for the linear model. Rewrite the expression as the following:
+\begin{equation}
+\label{Exercise2.1Pivot}
+\frac{
+\frac{\lambda'\hat{\beta} - \lambda'\beta}{
+\sigma \sqrt{\lambda'(X'X)^-\lambda)}
+}
+}{
+\sqrt{\frac{MSE}{\sigma^2}}
+}
+\end{equation}
+
+In the numerator,
+\[
+\lambda'\hat{\beta} \sim N(\lambda\beta, \sigma^2\lambda'(X'X)^-\lambda)
+\]
+
+implies
+
+\[
+\frac{\lambda'\hat{\beta} - \lambda'\beta}{
+\sigma \sqrt{\lambda'(X'X)^-\lambda)}} \sim N(0, 1)
+\]
+
+In the denominator,
+\[
+(n-r)\frac{MSE}{\sigma^2} \sim X^2(n-r)
+\]
+
+Since $\lambda'\beta$ is estimable, $\lambda'\hat{\beta} = \rho'MY$, and since $MSE = \frac{Y'(I-M)Y}{n-r}$, $\rho'MY$ and $Y'(I-M)Y$ are independent, given the usual linear model assumptions. Thus Equation \ref{Exercise2.1Pivot} has a $t(dfE)$ distribution, where $dfE = n-r$.
+
+For the $\alpha$ level test of $H_0: \lambda\beta = 0$, the test rejects for large values of the test statistic in Equation \ref{Exercise2.1Starter}. That is, we reject when
+
+\[
+\frac{\lambda'\hat{\beta}}{
+\sqrt{MSE\lambda'(X'X)^-\lambda}
+} \geq t(1-\alpha/2, n-r)
+\]
+
+or
+
+\[
+\frac{\lambda'\hat{\beta}}{
+\sqrt{MSE\lambda'(X'X)^-\lambda}
+} \leq -t(1-\alpha/2, n-r)
+\]
+
+For the $(1-\alpha)100\%$ confidence interval, we do not reject if
+
+\[
+-t(1-\alpha/2, n-r) < \frac{\lambda'\hat{\beta} - \lambda'\beta}{
+\sqrt{MSE\lambda'(X'X)^-\lambda}
+} < t(1-\alpha/2, n-r)
+\]
+
+which is equivalent to
+
+\[
+\lambda'\hat{\beta} - t(1-\alpha/2, n-r)\sqrt{MSE\lambda'(X'X)^-\lambda} < \lambda'\beta < \lambda'\hat{\beta} + t(1-\alpha/2, n-r)\sqrt{MSE\lambda'(X'X)^\lambda}
+\]
+
+\section*{Exercise 2.2}
+Let $y_{11}, y_{12} \dots y_{1r}$ be $N(\mu_1, \sigma^2)$ and $y_{21}, y_{22} \dots y_{2s}$ be $N(\mu_2, \sigma^2)$ with all $y_{ij}$s independent. Write this as a linear model. Using the results of Chapter 2, find estimates of $\mu_1, \mu_2, \mu_1-\mu_2,$ and $\sigma^2$. Form a $\alpha = 0.01$ test for $H_0:\mu_1 = \mu_2$. Form $95\%$ confidence intervals for $\mu_1-\mu_2$ and $\mu_1$. What is the test for $H_0: \mu_1 = \mu_2 + \Delta$, where $\Delta$ is some known fixed quantity? How do these results compare with the usual analysis for two independent samples with a common variance?
+
+\end{document}

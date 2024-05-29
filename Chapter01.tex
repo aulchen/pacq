@@ -39,7 +39,7 @@
 \newcommand{\geom}{\text{Geom}}
 
 \author{Arthur Chen}
-\title{Chapter 1 Solutions}
+\title{PACQ Chapter 1 Solutions}
 \date{\today}
 
 \begin{document}
@@ -583,4 +583,31 @@ A quick check will show that $O_1, O_2, O_3$ are orthonormal, so $O_i'O_j = 0$ f
 Show that the quadratic forms are mutually independent.
 
 This immediately follows from Part b because for Gaussians $1 ... k$, pairwise independence between all pairs implies mutual independence. The quadratic forms are functions of the Gaussians, so they too are mutually independent.
+
+\section*{Exercise 1.5.7}
+Let $A$ be symmetric, $Y \sim N(0, V)$, and $w_1 \dots w_s$ be independent $X^2(1)$ random variables. Show that for some values of $s$ and numbers $\lambda_i$ $Y'AY \sim \sum_{i=1}^s \lambda_i w_i$.
+
+Using the hint, I will rewrite $Y \sim QZ$, where $Z$ is a standard normal and $V = QQ'$. Thus $Y'AY \sim Z'Q'AQZ$.
+
+Consider $Q'AQ$. Because $A$ is symmetric, $Q'AQ$ is symmetric, so it is orthogonally diagonalizable. Thus $Q'AQ = PD(\lambda_i)P'$, where $P$ is orthonormal and $\lambda_i$ are the eigenvalues of $Q'AQ$.
+
+Letting $P_i$ be the $i$th row of $P$, we expand out $Z'Q'AQZ = Z'PD(\lambda_i)P'Z$ to see that
+
+\[
+Z'PD(\lambda_i)P'Z = 
+\begin{pmatrix}
+\lambda_1 Z_1 P_1 \\
+\vdots \\
+\lambda_n Z_n P_n
+\end{pmatrix}
+\begin{pmatrix}
+P_1' & \dots & P_n'
+\end{pmatrix}
+Z
+=
+D(\lambda_iZ_i)Z = \sum_{i=1}^n \lambda_i w_i
+\]
+
+as desired, letting $s=n$.
+
 \end{document}
