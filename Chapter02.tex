@@ -117,7 +117,7 @@ For the $(1-\alpha)100\%$ confidence interval, we do not reject if
 which is equivalent to
 
 \[
-\lambda'\hat{\beta} - t(1-\alpha/2, n-r)\sqrt{MSE\lambda'(X'X)^-\lambda} < \lambda'\beta < \lambda'\hat{\beta} + t(1-\alpha/2, n-r)\sqrt{MSE\lambda'(X'X)^\lambda}
+\lambda'\hat{\beta} - t(1-\alpha/2, n-r)\sqrt{MSE\lambda'(X'X)^-\lambda} < \lambda'\beta < \lambda'\hat{\beta} + t(1-\alpha/2, n-r)\sqrt{MSE\lambda'(X'X)^-\lambda}
 \]
 
 \section*{Exercise 2.2}
@@ -191,6 +191,28 @@ Y'(I-M)Y &= \sum_{i=1}^r y_{1i}(y_{1i}-\bar{Y_1}) + y_{2i}(y_{2i}-\bar{Y_2})  \\
 &= \sum_{i=1}^r (y_{1i}-\bar{Y_1})^2 + \sum_{i=1}^s (y_{2i}-\bar{Y_2})^2
 \end{align*}
 
-and so the estimate, $\hat{\sigma^2} = \frac{Y'(I-M)Y}{n-2}$ matches the standard two-sample results. 
+and so the estimate of $\sigma^2$, $\hat{\sigma^2} =MSE = \frac{Y'(I-M)Y}{n-2}$ matches the standard two-sample results.
+
+For a $\alpha=.01$ level test for $H_0:\mu_1 = \mu_2$, we have that $\lambda'=(1, -1)$ gives us a model of the form $H_0: \lambda'\mu = 0$. Thus by Exercise 2.1,
+
+\[
+\frac{
+\lambda'\hat{\mu}
+}{
+\sqrt{
+MSE \lambda'(X'X)^{-1}\lambda
+}
+} =
+\frac{
+\hat{\mu}_2 - \hat{\mu}_2
+}{
+\sqrt{
+MSE (\frac{1}{r} + \frac{1}{s})
+}
+}
+\geq t(.995, n-2)
+\]
+
+forms a level $\alpha=.01$ test for $H_0$.
 
 \end{document}
