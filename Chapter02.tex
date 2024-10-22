@@ -182,7 +182,7 @@ where $\bar{Y_1} = \frac{1}{r}\sum_{i=1}^r y_{1i}$, and $\bar{Y_2}$ similarly. T
 \widehat{\mu_1-\mu_2} = (\rho_1-\rho_2)'MY = \hat{\mu}_1 - \hat{\mu}_2
 \end{gather}
 
-which match with the standard two-sample results. For $\hat{\sigma^2} = \frac{Y'(I-M)Y}{n-r(M)}$, we have
+which match with the standard two-sample results. For $\hat{\sigma^2} = \frac{Y'(I-M)Y}{n-r(M)} = \frac{Y'(I-M)Y}{n-2}$, we have
 
 \begin{align*}
 Y'Y &= \sum_{i=1}^r y_{1i}^2 + \sum_{i=1}^s y_{2i}^2 \\
@@ -191,6 +191,6 @@ Y'(I-M)Y &= \sum_{i=1}^r y_{1i}(y_{1i}-\bar{Y_1}) + y_{2i}(y_{2i}-\bar{Y_2})  \\
 &= \sum_{i=1}^r (y_{1i}-\bar{Y_1})^2 + \sum_{i=1}^s (y_{2i}-\bar{Y_2})^2
 \end{align*}
 
-and so the estimate, $\hat{\sigma^2}$ is almost equal to the standard two-sample results, except the factor in the denominator is $n-r-s$ instead of $n-2$.
+and so the estimate, $\hat{\sigma^2} = \frac{Y'(I-M)Y}{n-2}$ matches the standard two-sample results. 
 
 \end{document}
