@@ -57,7 +57,7 @@ Show that for $\lambda'\beta$ estimable,
 } \sim t(dfE)
 \end{equation}
 
-Find the form of an $\alpha$ level test of $H_0: \lambda'\beta = 0$ and the form for a $(1-\alpha)100\%$ confidence interval for $\lambda'\beta$.
+Find the form of an $\alpha$ level test of $H_0: \lambda' \beta = 0$ and the form for a $(1-\alpha)100\%$ confidence interval for $\lambda'\beta$.
 
 I will make the usual assumptions for the linear model. Rewrite the expression as the following:
 \begin{equation}
@@ -88,9 +88,9 @@ In the denominator,
 (n-r)\frac{MSE}{\sigma^2} \sim X^2(n-r)
 \]
 
-Since $\lambda'\beta$ is estimable, $\lambda'\hat{\beta} = \rho'MY$, and since $MSE = \frac{Y'(I-M)Y}{n-r}$, $\rho'MY$ and $Y'(I-M)Y$ are independent, given the usual linear model assumptions. Thus Equation \ref{Exercise2.1Pivot} has a $t(dfE)$ distribution, where $dfE = n-r$.
+Since $\lambda' \beta$ is estimable, $\lambda' \hat{\beta} = \rho'MY$, and since $MSE = \frac{Y'(I-M)Y}{n-r}$, $\rho'MY$ and $Y'(I-M)Y$ are independent, given the usual linear model assumptions. Thus Equation \ref{Exercise2.1Pivot} has a $t(dfE)$ distribution, where $dfE = n-r$.
 
-For the $\alpha$ level test of $H_0: \lambda\beta = 0$, the test rejects for large values of the test statistic in Equation \ref{Exercise2.1Starter}. That is, we reject when
+For the $\alpha$ level test of $H_0: \lambda'\beta = 0$, the test rejects for large values of the test statistic in Equation \ref{Exercise2.1Starter}. That is, we reject when
 
 \[
 \frac{\lambda'\hat{\beta}}{
@@ -122,5 +122,75 @@ which is equivalent to
 
 \section*{Exercise 2.2}
 Let $y_{11}, y_{12} \dots y_{1r}$ be $N(\mu_1, \sigma^2)$ and $y_{21}, y_{22} \dots y_{2s}$ be $N(\mu_2, \sigma^2)$ with all $y_{ij}$s independent. Write this as a linear model. Using the results of Chapter 2, find estimates of $\mu_1, \mu_2, \mu_1-\mu_2,$ and $\sigma^2$. Form a $\alpha = 0.01$ test for $H_0:\mu_1 = \mu_2$. Form $95\%$ confidence intervals for $\mu_1-\mu_2$ and $\mu_1$. What is the test for $H_0: \mu_1 = \mu_2 + \Delta$, where $\Delta$ is some known fixed quantity? How do these results compare with the usual analysis for two independent samples with a common variance?
+
+I will write this as a linear model in $\R^{s+r}$, $Y=X\mu + \epsilon$ with data, design, and coefficient matrices
+
+\[
+Y = \begin{pmatrix}
+y_{11} \\
+\vdots \\
+y_{1r} \\
+y_{21} \\
+\vdots \\
+y_{2s}
+\end{pmatrix},
+X = \begin{pmatrix}
+J_{r,1} & 0 \\
+0 & J{s, 1}
+\end{pmatrix},
+\mu = \begin{pmatrix}
+\mu_1 \\ \mu_2
+\end{pmatrix}
+\]
+
+We will assume that $\epsilon$ is distributed $N(0, \sigma_2I)$ as usual.
+
+$\mu_1$ is estimable. To show this, note that $\lambda_1' = (1, 0)$ implies that $\lambda_1' \mu = \mu_1$. For $\rho_1' = (1, 0 \dots 0)$, $P_1'X\mu = \mu_1$. Thus $\hat{\mu}_1 = \rho_1'MY$ is the least squares estimate for $\mu_1$. Similarly, the least squares estimate of $\mu_2$ is estimated with $\rho_2' = (0 \dots 0, 1)$, and $\mu_1 - \mu_2$ is estimable with $(\rho_1 - \rho_2)'$. $\sigma^2$ is estimated as usual with the MSE, $Y'(I-M)Y/(n-r(M))$.
+
+Calculating $M$, we have that
+\[
+X'X = \begin{pmatrix}
+r & 0 \\
+0 & s \end{pmatrix}
+\]
+
+implies
+
+\begin{gather*}
+(X'X)^{-1} = \begin{pmatrix}
+1/r & 0 \\
+0 & 1/s \end{pmatrix} \\
+M = X(X'X)^{-1}X' = \begin{pmatrix}
+\frac{1}{r} J_{r} & 0 \\
+0 & \frac{1}{s} J_{s}
+\end{pmatrix} \\
+MY = \begin{pmatrix}
+\left(\frac{1}{r}\sum_i^r y_{i1}\right)J_{r,1} \\
+\left(\frac{1}{s}\sum_i^s y_{i2}\right)J_{s,1}
+\end{pmatrix} = 
+\begin{pmatrix}
+\bar{Y_1}J_{r,1} \\
+\bar{Y_2}J_{s,1}
+\end{pmatrix}
+\end{gather*}
+
+where $\bar{Y_1} = \frac{1}{r}\sum_{i=1}^r y_{1i}$, and $\bar{Y_2}$ similarly. Thus
+
+\begin{gather}
+\hat{\mu}_1 = \rho_1'MY = \frac{1}{r}\sum_i^r y_{i1} \\
+\hat{\mu}_2 = \rho_2'MY = \frac{1}{s}\sum_i^s y_{i2} \\
+\widehat{\mu_1-\mu_2} = (\rho_1-\rho_2)'MY = \hat{\mu}_1 - \hat{\mu}_2
+\end{gather}
+
+which match with the standard two-sample results. For $\hat{\sigma^2} = \frac{Y'(I-M)Y}{n-r(M)}$, we have
+
+\begin{align*}
+Y'Y &= \sum_{i=1}^r y_{1i}^2 + \sum_{i=1}^s y_{2i}^2 \\
+Y'MY &= \sum_{i=1}^r y_{1i}\bar{Y_1} + \sum_{i=1}^s y_{2i}\bar{Y_2} \\
+Y'(I-M)Y &= \sum_{i=1}^r y_{1i}(y_{1i}-\bar{Y_1}) + y_{2i}(y_{2i}-\bar{Y_2})  \\
+&= \sum_{i=1}^r (y_{1i}-\bar{Y_1})^2 + \sum_{i=1}^s (y_{2i}-\bar{Y_2})^2
+\end{align*}
+
+and so the estimate, $\hat{\sigma^2}$ is almost equal to the standard two-sample results, except the factor in the denominator is $n-r-s$ instead of $n-2$.
 
 \end{document}
