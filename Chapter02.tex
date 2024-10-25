@@ -120,6 +120,14 @@ which is equivalent to
 \lambda'\hat{\beta} - t(1-\alpha/2, n-r)\sqrt{MSE\lambda'(X'X)^-\lambda} < \lambda'\beta < \lambda'\hat{\beta} + t(1-\alpha/2, n-r)\sqrt{MSE\lambda'(X'X)^-\lambda}
 \]
 
+and thus the $(1-\alpha)$\% confidence interval for $\lambda'\beta$ is
+
+\[
+\left(
+\lambda'\hat{\beta} - t(1-\alpha/2, n-r)\sqrt{MSE\lambda'(X'X)^-\lambda},  \lambda'\hat{\beta} + t(1-\alpha/2, n-r)\sqrt{MSE\lambda'(X'X)^-\lambda}
+\right)
+\]
+
 \section*{Exercise 2.2}
 Let $y_{11}, y_{12} \dots y_{1r}$ be $N(\mu_1, \sigma^2)$ and $y_{21}, y_{22} \dots y_{2s}$ be $N(\mu_2, \sigma^2)$ with all $y_{ij}$s independent. Write this as a linear model. Using the results of Chapter 2, find estimates of $\mu_1, \mu_2, \mu_1-\mu_2,$ and $\sigma^2$. Form a $\alpha = 0.01$ test for $H_0:\mu_1 = \mu_2$. Form $95\%$ confidence intervals for $\mu_1-\mu_2$ and $\mu_1$. What is the test for $H_0: \mu_1 = \mu_2 + \Delta$, where $\Delta$ is some known fixed quantity? How do these results compare with the usual analysis for two independent samples with a common variance?
 
@@ -204,7 +212,7 @@ MSE \lambda'(X'X)^{-1}\lambda
 }
 } =
 \frac{
-\hat{\mu}_2 - \hat{\mu}_2
+\hat{\mu}_1 - \hat{\mu}_2
 }{
 \sqrt{
 MSE (\frac{1}{r} + \frac{1}{s})
@@ -215,4 +223,41 @@ MSE (\frac{1}{r} + \frac{1}{s})
 
 forms a level $\alpha=.01$ test for $H_0$.
 
+For the 95\% confidence interval for $\mu_1-\mu_2$, by Exercise 2.1,
+
+\[
+\left(
+\hat{\mu}_1-\hat{\mu}_2 - t(.975, n-2)\sqrt{MSE\left(\frac{1}{r}+\frac{1}{s}\right)},  \hat{\mu}_1-\hat{\mu}_2 + t(.975, n-2)\sqrt{MSE\left(\frac{1}{r}+\frac{1}{s}\right)}
+\right)
+\]
+
+forms a 95\% confidence interval for $\mu_1-\mu_2$. For a 95\% confidence interval for $\mu_1$, we have in this case that for $\lambda'=(1, 0)$, $\lambda \mu = \mu_1$, so $\lambda'(X'X)^{-1}\lambda = \frac{1}{r}$. Thus by Exercise 2.1,
+
+\[
+\left(
+\hat{\mu}_1 - t(.975, n-2)\sqrt{\frac{MSE}{r}}, \hat{\mu}_1 + t(.975, n-2)\sqrt{\frac{MSE}{r}}, 
+\right)
+\]
+
+forms a 95\% confidence interval for $\mu_1$.
+
+To test the null hypothesis that $H_0: \mu_1=\mu_2 + \Delta$ where $\Delta$ is a fixed quantity, we know from Exercise 2.1 and Appendix E that
+
+\[
+\frac{\hat{\mu}_1-\hat{\mu}_2 - \Delta}{
+\sqrt{MSE\left( \frac{1}{r} + \frac{1}{s} \right)}
+} \sim t(n-2)
+\]
+
+so a level $100(1-\alpha)$\% test is to reject when
+
+\[
+\left|
+\frac{\hat{\mu}_1-\hat{\mu}_2 - \Delta}{
+\sqrt{MSE\left( \frac{1}{r} + \frac{1}{s} \right)}
+}
+\right| \geq
+t(.975, n-2)
+\]
+ 
 \end{document}
